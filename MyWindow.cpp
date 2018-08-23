@@ -84,7 +84,7 @@ void MyWindow::timeStepping()
   mController->update(mTargetPosition, mTargetRPY);
 
   // Step forward the simulation
-  //mWorld->step();
+  mWorld->step();
 }
 
 //==============================================================================

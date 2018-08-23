@@ -49,7 +49,6 @@ Controller::Controller(dart::dynamics::SkeletonPtr _robot,
   mZeroCol.setZero();
   mZero7Col.setZero();
   mKvJoint.setZero();
-  // mKvOr.setZero();
   mWReg.setZero();
   currLow << -9.5, -9.5, -7.5, -7.5, -5.5, -5.5, -5.5;
   currHigh << 9.5, 9.5, 7.5, 7.5, 5.5, 5.5, 5.5;
@@ -298,16 +297,16 @@ void Controller::update(const Eigen::Vector3d& _targetPosition, const Eigen::Vec
   std::vector<double> dq_vec(7);
   double minf;
 
-  // Perform optimization to find joint accelerations 
-  Eigen::MatrixXd P(PPos.rows() + POr.rows() + PReg.rows(), PPos.cols() );
-  P << mWPos*PPos,
+  // Perform optimization to find joint speeds
+  Eigen::MatrixXd P(PPos.rows()/* + POr.rows() + PReg.rows()*/, PPos.cols() );
+  P << mWPos*PPos;/*,
        mWOr*POr,
-       mWReg*PReg;
+       mWReg*PReg;*/
   
-  Eigen::VectorXd b(bPos.rows() + bOr.rows() + bReg.rows(), bPos.cols() );
-  b << mWPos*bPos,
+  Eigen::VectorXd b(bPos.rows()/* + bOr.rows() + bReg.rows()*/, bPos.cols() );
+  b << mWPos*bPos;/*,
        mWOr*bOr,
-       mWReg*bReg;
+       mWReg*bReg;*/
        
   optParams.P = P;
   optParams.b = b;
@@ -322,7 +321,6 @@ void Controller::update(const Eigen::Vector3d& _targetPosition, const Eigen::Vec
   // ***************************** PID *****************************
   Eigen::Matrix<double, 7, 1> dq_target(dq_vec.data()); 
   Eigen::Matrix<double, 7, 1> dq = mRobot->getVelocities();
-  // cout << "Arm Vels: " << dq(1) << " " << dq(2) << " " << dq(3) << " " << dq(4) << " " << dq(5) << " " << dq(6) << endl;
   Eigen::Matrix<double, 7, 1> dq_cmd = -mKvJoint*(dq - dq_target);
 
   Eigen::Matrix<double, 7, 1> torque_cmd;
@@ -331,9 +329,16 @@ void Controller::update(const Eigen::Vector3d& _targetPosition, const Eigen::Vec
   }
 
   cout << "Torque Command:  " << torque_cmd(1) << "  " << torque_cmd(2) << "  " << torque_cmd(3) << "  " 
-  		<< torque_cmd(4) << "  " << torque_cmd(5) << "  " << torque_cmd(6) << endl;
+  							  << torque_cmd(4) << "  " << torque_cmd(5) << "  " << torque_cmd(6) << endl;
 
-  mRobot->setForces(torque_cmd);
+  //Set dummy Coulomb/Viscous Frictions for now. Eventually extract from beta
+  for (int i = 0; i < 7; i++){
+	  std::size_t index = 0;
+	  mRobot->getJoint(i)->setCoulombFriction(index,100);
+	  mRobot->getJoint(i)->setDampingCoefficient(index,100);
+  }
+
+  mRobot->setForces(torque_cmd/100);
 
   mPriorTime = currentTime;
 }

@@ -266,44 +266,23 @@ void Controller::update(const Eigen::Vector3d& _targetPosition, const Eigen::Vec
 
 //***********************************************************************************
 //***********************************************************************************
-  static Eigen::Quaterniond quatRef, quat;
-  static double quatRef_w, quat_w;
-  static Eigen::Vector3d quatRef_xyz, quat_xyz, quatError_xyz, w, dwref, wref;
-  static Eigen::Matrix<double, 3, 15> JwL_small, dJwL_small;
-  static Eigen::Matrix<double, 3, 25> JwL_full, dJwL_full;
-  static Eigen::Matrix<double, 3, 18> JwL, dJwL;  
-
-  // Reference orientation (TargetRPY is assumed to be in Frame 0)
-  quatRef = Eigen::Quaterniond(Eigen::AngleAxisd(_targetPosition(0), Eigen::Vector3d::UnitX()) *
-           Eigen::AngleAxisd(_targetPosition(1), Eigen::Vector3d::UnitY()) *
-           Eigen::AngleAxisd(_targetPosition(2), Eigen::Vector3d::UnitZ()));
-  quatRef_w = quatRef.w(); 
-  quatRef_xyz << quatRef.x(), quatRef.y(), quatRef.z();
+  Eigen::Quaterniond quat(mEndEffector->getTransform().rotation());
+  double quat_w = quat.w(); 
+  Eigen::Vector3d quat_xyz(quat.x(), quat.y(), quat.z());
+  if(quat_w < 0) {quat_w *= -1.0; quat_xyz *= -1.0; }
+  Eigen::Quaterniond quatRef(Eigen::AngleAxisd(_targetRPY(0), Eigen::Vector3d::UnitX()) *
+           Eigen::AngleAxisd(_targetRPY(1), Eigen::Vector3d::UnitY()) *
+           Eigen::AngleAxisd(_targetRPY(2), Eigen::Vector3d::UnitZ()));
+  double quatRef_w = quatRef.w(); 
+  Eigen::Vector3d quatRef_xyz(quatRef.x(), quatRef.y(), quatRef.z());
   if(quatRef_w < 0) { quatRef_w *= -1.0; quatRef_xyz *= -1.0; }
-
-  // Current orientation in Frame 0
-  Eigen::Vector3d currentRPY = dart::math::matrixToEulerXYZ(mRot0*mEndEffector->getTransform().rotation());
-  quat = Eigen::Quaterniond(Eigen::AngleAxisd(currentRPY(0), Eigen::Vector3d::UnitX()) *
-           Eigen::AngleAxisd(currentRPY(1), Eigen::Vector3d::UnitY()) *
-           Eigen::AngleAxisd(currentRPY(2), Eigen::Vector3d::UnitZ()));
-  // quat = Eigen::Quaterniond(mRot0*mLeftEndEffector->getTransform().rotation());
-  quat_w = quat.w(); 
-  quat_xyz << quat.x(), quat.y(), quat.z();
-  if(pow(-quat_w-quatRef_w, 2) + pow((-quat_xyz-quatRef_xyz).norm(), 2) < pow(quat_w-quatRef_w, 2) + pow((-quat_xyz-quatRef_xyz).norm(), 2)) {
-    quat_w *= -1.0; quat_xyz *= -1.0; 
-  }
-  
-  // Orientation error
-  quatError_xyz = quatRef_w*quat_xyz - quat_w*quatRef_xyz + quatRef_xyz.cross(quat_xyz);
-  
-  // Jacobian
-  JwL_small = mEndEffector->getAngularJacobian(); 
-  JwL_full << JwL_small.block<3,6>(0,0), mZeroCol, mZeroCol, JwL_small.block<3,2>(0,6), mZeroCol, JwL_small.block<3,7>(0,8), mZero7Col;
-  JwL = (mRot0*JwL_full*mJtf).topRightCorner(3, 18);
-
-  wref = -mKpOr*quatError_xyz;
-  Eigen::Matrix<double, 3, 7> POr = mWOr*JwL;
-  Eigen::Vector3d bOr = mWOr*wref;
+  Eigen::Vector3d quatError_xyz = quatRef_w*quat_xyz - quat_w*quatRef_xyz + quatRef_xyz.cross(quat_xyz);
+  Eigen::Vector3d w = mEndEffector->getAngularVelocity();
+  Eigen::Vector3d dwref = -mKpOr*quatError_xyz; // - mKvOr*w;
+  math::AngularJacobian Jw = mEndEffector->getAngularJacobian();       // 3 x n
+  math::AngularJacobian dJw = mEndEffector->getAngularJacobianDeriv();  // 3 x n
+  Eigen::Matrix<double, 3, 7> POr = Jw;
+  Eigen::Vector3d bOr = -(dJw*mdq - dwref);
 //***********************************************************************************
 //***********************************************************************************
 
@@ -322,8 +301,6 @@ void Controller::update(const Eigen::Vector3d& _targetPosition, const Eigen::Vec
   // inequalityconstraintParams[0].b = -mKmInv*mGRInv*(Cg + mCompensateFriction*(mViscousFriction*mdq + mCoulombFriction*sigmoid(mdq))) + mCurLim; 
   // inequalityconstraintParams[1].b =  mKmInv*mGRInv*(Cg + mCompensateFriction*(mViscousFriction*mdq + mCoulombFriction*sigmoid(mdq))) + mCurLim;
   
-
-
 
    // Optimizer stuff
   nlopt::opt opt(nlopt::LD_SLSQP, 7);

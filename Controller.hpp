@@ -94,7 +94,7 @@ public:
 
   unsigned long get_time();
 
-  bool mEnable;
+  // bool mEnable;
 
 private:
   /// \brief Robot
@@ -102,9 +102,6 @@ private:
 
   /// \brief End-effector of the robot
   dart::dynamics::BodyNode* mEndEffector;
-
-  /// \brief Control forces
-  // Eigen::VectorXd mForces;
 
   /// \brief Proportional gain for the virtual spring forces at the end effector
   double mWPos, mWOr;
@@ -118,11 +115,10 @@ private:
   Eigen::Matrix<double, 7, 7> mWReg, mKvJoint;
   double mKvReg;
 
-  // somatic_d_t mDaemon_cx;
-  // somatic_motor_t mSomaticSinglearm;  
-  // double mqInit[7] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
   double mqInit[7] = {0.0, -1.04, 0.0, 1.57, 0.0, 0.0, 0.0};
-  Eigen::Matrix<double, 7, 7> mRotorInertia, mViscousFriction, mCoulombFriction, mKmInv, mGRInv;
+
+  Eigen::Matrix<double, 7, 7> mRotorInertia, mViscousFriction, mCoulombFriction;//, mKmInv, mGRInv;
+  
   double mKm_array[7] = {31.4e-3, 31.4e-3, 38e-3, 38e-3, 16e-3, 16e-3, 16e-3};
   double mGR_array[7] = {596, 596, 625, 625, 552, 552, 552};
   Eigen::Matrix<double, 7, 1> currLow;

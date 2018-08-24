@@ -82,9 +82,9 @@ Controller::Controller(dart::dynamics::SkeletonPtr _robot,
     stream.str(str); for(int i=0; i<3; i++) stream >> mKp(i, i); stream.clear(); mKp *= mGainFactor;
     cout << "Kp: " << mKp(0, 0) << ", " << mKp(1, 1) << ", " << mKp(2, 2) << endl;
 
-    str = cfg->lookupString(scope, "Kv");
-    stream.str(str); for(int i=0; i<3; i++) stream >> mKv(i, i); stream.clear(); mKv *= mGainFactor;
-    cout << "Kv: " << mKv(0, 0) << ", " << mKv(1, 1) << ", " << mKv(2, 2) << endl;
+    // str = cfg->lookupString(scope, "Kv");
+    // stream.str(str); for(int i=0; i<3; i++) stream >> mKv(i, i); stream.clear(); mKv *= mGainFactor;
+    // cout << "Kv: " << mKv(0, 0) << ", " << mKv(1, 1) << ", " << mKv(2, 2) << endl;
 
     str = cfg->lookupString(scope, "KvJoint");
     stream.str(str); for(int i=0; i<7; i++) stream >> mKvJoint(i, i); stream.clear(); mKvJoint *= mGainFactor;
@@ -99,16 +99,16 @@ Controller::Controller(dart::dynamics::SkeletonPtr _robot,
     stream.str(str); for(int i=0; i<3; i++) stream >> mKpOr(i, i); stream.clear(); mKpOr *= mGainFactor;
     cout << "KpOr: " << mKpOr(0, 0) << ", " << mKpOr(1, 1) << ", " << mKpOr(2, 2) << endl;
 
-    // str = cfg->lookupString(scope, "KvOr");
-    // stream.str(str); for(int i=0; i<3; i++) stream >> mKvOr(i, i); stream.clear(); mKvOr *= mGainFactor;
-    // cout << "KvOr: " << mKvOr(0, 0) << ", " << mKvOr(1, 1) << ", " << mKvOr(2, 2) << endl;
+    str = cfg->lookupString(scope, "KvOr");
+    stream.str(str); for(int i=0; i<3; i++) stream >> mKvOr(i, i); stream.clear(); mKvOr *= mGainFactor;
+    cout << "KvOr: " << mKvOr(0, 0) << ", " << mKvOr(1, 1) << ", " << mKvOr(2, 2) << endl;
 
-    str = cfg->lookupString(scope, "wReg");
-    stream.str(str); for(int i=0; i<7; i++) stream >> mWReg(i, i); stream.clear();
-    cout << "wReg: "; for(int i=0; i<6; i++) cout << mWReg(i, i) << ", "; cout << mWReg(6, 6) << endl;
+    // str = cfg->lookupString(scope, "wReg");
+    // stream.str(str); for(int i=0; i<7; i++) stream >> mWReg(i, i); stream.clear();
+    // cout << "wReg: "; for(int i=0; i<6; i++) cout << mWReg(i, i) << ", "; cout << mWReg(6, 6) << endl;
 
-    mKvReg = cfg->lookupFloat(scope, "KvReg"); mKvReg *= mGainFactor;
-    cout << "KvReg: " << mKvReg << endl; 
+    // mKvReg = cfg->lookupFloat(scope, "KvReg"); mKvReg *= mGainFactor;
+    // cout << "KvReg: " << mKvReg << endl; 
 
     mdtFixed = cfg->lookupBoolean(scope, "dtFixed");
     cout << "dtFixed: " << (mdtFixed?"true":"false") << endl;
@@ -250,9 +250,6 @@ void Controller::update(const Eigen::Vector3d& _targetPosition, const Eigen::Vec
   double currentTime = (get_time() - mStartTime)/100000.0;
   double dt = (mdtFixed? mdt : (currentTime - mPriorTime));
 
-
-  // ============================ Optimizer ============================
-
   // End-effector Position
   Eigen::Vector3d x = mEndEffector->getTransform().translation();
   Eigen::Vector3d dx = mEndEffector->getLinearVelocity();
@@ -289,17 +286,13 @@ void Controller::update(const Eigen::Vector3d& _targetPosition, const Eigen::Vec
   Eigen::MatrixXd PReg = Eigen::Matrix<double, 7, 7>::Identity();
   Eigen::MatrixXd bReg = -mKvReg*mdq;
   */
-
-  Eigen::MatrixXd M = mRobot->getMassMatrix();                   // n x n
-  Eigen::VectorXd Cg   = mRobot->getCoriolisAndGravityForces();        // n x 1
   
+
+
+  // ============================ Optimizer ============================
+
   const vector<double> inequalityconstraintTol(7, 1e-3);
   OptParams inequalityconstraintParams[2];
-  // inequalityconstraintParams[0].P = mKmInv*mGRInv*(M + mRotorInertia + mCompensateFriction*mPredictFriction*mViscousFriction*dt);
-  // inequalityconstraintParams[1].P = -mKmInv*mGRInv*(M + mRotorInertia + mCompensateFriction*mPredictFriction*mViscousFriction*dt);
-  // inequalityconstraintParams[0].b = -mKmInv*mGRInv*(Cg + mCompensateFriction*(mViscousFriction*mdq + mCoulombFriction*sigmoid(mdq))) + mCurLim; 
-  // inequalityconstraintParams[1].b =  mKmInv*mGRInv*(Cg + mCompensateFriction*(mViscousFriction*mdq + mCoulombFriction*sigmoid(mdq))) + mCurLim;
-  
 
    // Optimizer stuff
   nlopt::opt opt(nlopt::LD_SLSQP, 7);
@@ -321,23 +314,22 @@ void Controller::update(const Eigen::Vector3d& _targetPosition, const Eigen::Vec
   optParams.P = P;
   optParams.b = b;
   opt.set_min_objective(optFunc, &optParams);
-  // opt.add_inequality_mconstraint(constraintFunc, &inequalityconstraintParams[0], inequalityconstraintTol);
-  // opt.add_inequality_mconstraint(constraintFunc, &inequalityconstraintParams[1], inequalityconstraintTol);
   opt.set_xtol_rel(1e-4);
   opt.set_maxtime(0.005);
   opt.optimize(dq_vec, minf);
   
+  Eigen::Matrix<double, 7, 1> dq_target(dq_vec.data()); 
+
 
 
   // =============================== PID ==============================
-
-  Eigen::Matrix<double, 7, 1> dq_target(dq_vec.data()); 
+ 
   Eigen::Matrix<double, 7, 1> dq = mRobot->getVelocities();
 
   Eigen::Matrix<double, 7, 1> dq_zero;
   dq_zero << 0, 0, 0, 0, 0, 0, 0;
 
-  Eigen::Matrix<double, 7, 1> dq_cmd = -mKvJoint*(dq_zero - dq);
+  Eigen::Matrix<double, 7, 1> dq_cmd = -mKvJoint*(dq- dq_zero);
 
   Eigen::Matrix<double, 7, 1> torque_cmd;
   for(int i = 0; i<7; i++){

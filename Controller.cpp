@@ -30,6 +30,7 @@
  */
 
 #include "Controller.hpp"
+
 //==============================================================================
 Controller::Controller(dart::dynamics::SkeletonPtr _robot,
                        dart::dynamics::BodyNode* _endEffector)
@@ -149,7 +150,7 @@ Controller::Controller(dart::dynamics::SkeletonPtr _robot,
     double xz = beta(ind + 8);
     double yz = beta(ind + 9);
 
-    // *** WARNING *** Adding these Beta Parameters results in failure in the simulation
+    // *** WARNING *** Setting these Beta Parameters results in failure in the simulation
     // mRobot->getBodyNode(i)->setMass(m);
     // mRobot->getBodyNode(i)->setLocalCOM(mCOM/m);
     // mRobot->getBodyNode(i)->setMomentOfInertia(xx, yy, zz, xy, xz, yz);
@@ -166,10 +167,9 @@ Controller::Controller(dart::dynamics::SkeletonPtr _robot,
   //Set beta Coulomb/Viscous Frictions
   for (int i = 0; i < 7; i++){
 	  std::size_t index = 0;
-	  mRobot->getJoint(i)->setCoulombFriction(index,mCoulombFriction(i,i));
+	  mRobot->getJoint(i)->setCoulombFriction(index,mCoulombFriction(i,i)/10);
 	  mRobot->getJoint(i)->setDampingCoefficient(index,mViscousFriction(i,i)/10);
   }
-
  
   // ============================= set mStep to zero
   mSteps = 0;
@@ -179,7 +179,6 @@ Controller::Controller(dart::dynamics::SkeletonPtr _robot,
 Controller::~Controller(){}
 
 //==============================================================================
-
 struct OptParams{
   Eigen::Matrix<double, -1, 7> P;
   Eigen::VectorXd b;
@@ -208,8 +207,7 @@ void constraintFunc(unsigned m, double *result, unsigned n, const double* x, dou
 }
 
 //==============================================================================
-double optFunc(const std::vector<double> &x, std::vector<double> &grad, void *my_func_data)
-{
+double optFunc(const std::vector<double> &x, std::vector<double> &grad, void *my_func_data){
   OptParams* optParams = reinterpret_cast<OptParams *>(my_func_data);
   Eigen::Matrix<double, 7, 1> X(x.data());
 
@@ -236,7 +234,6 @@ unsigned long Controller::get_time(){
   ret /= 10;
   ret += (tv.tv_sec*100000);
   return ret;
-
 }
 
 //==============================================================================
@@ -262,7 +259,6 @@ void Controller::update(const Eigen::Vector3d& _targetPosition, const Eigen::Vec
   Eigen::Vector3d dxref = -mKp*(x - _targetPosition);
   math::LinearJacobian Jv = mEndEffector->getLinearJacobian();       // 3 x n
   math::LinearJacobian dJv = mEndEffector->getLinearJacobianDeriv();  // 3 x n
-  //Px - b = Jv*dq - dxref
   Eigen::Matrix<double, 3, 7> PPos = Jv;
   Eigen::Vector3d bPos = -(-dxref) ;
 
@@ -323,44 +319,34 @@ void Controller::update(const Eigen::Vector3d& _targetPosition, const Eigen::Vec
 
   Eigen::Matrix<double, 7, 1> dq_target(dq_vec.data()); 
   Eigen::Matrix<double, 7, 1> dq = mRobot->getVelocities();
-  
-  dqref << 10, 0, 0, 0, 0, 0, 0;
+  Eigen::Matrix<double, 7, 1> opt_torque_cmd = -mKvJoint*(dq - dq_target);
+  Eigen::Matrix<double, 7, 1> lmtd_torque_cmd;
 
-  Eigen::Matrix<double, 7, 1> dq_cmd = mKvJoint*(dq_target - dq);
-
-
-
-  Eigen::Matrix<double, 7, 1> torque_cmd;
   for(int i = 0; i<7; i++){
-  	torque_cmd(i) = std::max(torqueLow(i), std::min(torqueHigh(i), dq_cmd(i))); 
+  	lmtd_torque_cmd(i) = std::max(torqueLow(i), std::min(torqueHigh(i), opt_torque_cmd(i))); 
   }
   
-
-
   // =========================== Set Forces ===========================
 
-  cout << "Torque Command:  " << torque_cmd(0) << " " << torque_cmd(1) << "  " << torque_cmd(2) << "  " << torque_cmd(3) << "  " 
-  							  << torque_cmd(4) << "  " << torque_cmd(5) << "  " << torque_cmd(6) << endl;
+  cout << "Torque Command:  " << lmtd_torque_cmd(0) << " " << lmtd_torque_cmd(1) << "  " << lmtd_torque_cmd(2) << "  " << lmtd_torque_cmd(3) << "  " 
+  							  << lmtd_torque_cmd(4) << "  " << lmtd_torque_cmd(5) << "  " << lmtd_torque_cmd(6) << endl;
   
-  mRobot->setForces(torque_cmd);
+  mRobot->setForces(lmtd_torque_cmd);
 
   mPriorTime = currentTime;
 }
 
 //==============================================================================
-dart::dynamics::SkeletonPtr Controller::getRobot() const
-{
+dart::dynamics::SkeletonPtr Controller::getRobot() const{
   return mRobot;
 }
 
 //==============================================================================
-dart::dynamics::BodyNode* Controller::getEndEffector() const
-{
+dart::dynamics::BodyNode* Controller::getEndEffector() const{
   return mEndEffector;
 }
 
 //==============================================================================
-void Controller::keyboard(unsigned char /*_key*/, int /*_x*/, int /*_y*/)
-{
+void Controller::keyboard(unsigned char /*_key*/, int /*_x*/, int /*_y*/){
 }
 

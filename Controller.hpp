@@ -123,6 +123,9 @@ private:
   double mGR_array[7] = {596, 596, 625, 625, 552, 552, 552};
   Eigen::Matrix<double, 7, 1> currLow;
   Eigen::Matrix<double, 7, 1> currHigh; 
+  Eigen::Matrix<double, 7, 1> torqueLow;
+  Eigen::Matrix<double, 7, 1> torqueHigh; 
+   Eigen::Matrix<double, 7, 1> dqref; 
 
   double mPriorTime;
   long mStartTime;

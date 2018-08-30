@@ -80,8 +80,11 @@ void MyWindow::timeStepping()
     time += dt;
   }
 
+  //cout<<"testing testing testing"<<endl;
   // Update the controller and apply control force to the robot
   mController->update(mTargetPosition, mTargetRPY);
+  //cout<<"isolate error"<<endl;
+  cout<<endl;
 
   // Step forward the simulation
   mWorld->step();

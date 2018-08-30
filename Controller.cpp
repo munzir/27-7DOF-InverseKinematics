@@ -82,9 +82,9 @@ Controller::Controller(dart::dynamics::SkeletonPtr _robot,
     stream.str(str); for(int i=0; i<3; i++) stream >> mKp(i, i); stream.clear(); mKp *= mGainFactor;
     cout << "Kp: " << mKp(0, 0) << ", " << mKp(1, 1) << ", " << mKp(2, 2) << endl;
 
-    // str = cfg->lookupString(scope, "Kv");
-    // stream.str(str); for(int i=0; i<3; i++) stream >> mKv(i, i); stream.clear(); mKv *= mGainFactor;
-    // cout << "Kv: " << mKv(0, 0) << ", " << mKv(1, 1) << ", " << mKv(2, 2) << endl;
+    str = cfg->lookupString(scope, "Kv");
+    stream.str(str); for(int i=0; i<3; i++) stream >> mKv(i, i); stream.clear(); mKv *= mGainFactor;
+    cout << "Kv: " << mKv(0, 0) << ", " << mKv(1, 1) << ", " << mKv(2, 2) << endl;
 
     str = cfg->lookupString(scope, "KvJoint");
     stream.str(str); for(int i=0; i<7; i++) stream >> mKvJoint(i, i); stream.clear(); mKvJoint *= mGainFactor;
@@ -103,12 +103,12 @@ Controller::Controller(dart::dynamics::SkeletonPtr _robot,
     stream.str(str); for(int i=0; i<3; i++) stream >> mKvOr(i, i); stream.clear(); mKvOr *= mGainFactor;
     cout << "KvOr: " << mKvOr(0, 0) << ", " << mKvOr(1, 1) << ", " << mKvOr(2, 2) << endl;
 
-    // str = cfg->lookupString(scope, "wReg");
-    // stream.str(str); for(int i=0; i<7; i++) stream >> mWReg(i, i); stream.clear();
-    // cout << "wReg: "; for(int i=0; i<6; i++) cout << mWReg(i, i) << ", "; cout << mWReg(6, 6) << endl;
+    str = cfg->lookupString(scope, "wReg");
+    stream.str(str); for(int i=0; i<7; i++) stream >> mWReg(i, i); stream.clear();
+    cout << "wReg: "; for(int i=0; i<6; i++) cout << mWReg(i, i) << ", "; cout << mWReg(6, 6) << endl;
 
-    // mKvReg = cfg->lookupFloat(scope, "KvReg"); mKvReg *= mGainFactor;
-    // cout << "KvReg: " << mKvReg << endl; 
+    mKvReg = cfg->lookupFloat(scope, "KvReg"); mKvReg *= mGainFactor;
+    cout << "KvReg: " << mKvReg << endl; 
 
     mdtFixed = cfg->lookupBoolean(scope, "dtFixed");
     cout << "dtFixed: " << (mdtFixed?"true":"false") << endl;
@@ -149,26 +149,28 @@ Controller::Controller(dart::dynamics::SkeletonPtr _robot,
     double xz = beta(ind + 8);
     double yz = beta(ind + 9);
 
-    mRobot->getBodyNode(i)->setMass(m);
-    mRobot->getBodyNode(i)->setLocalCOM(mCOM/m);
-    mRobot->getBodyNode(i)->setMomentOfInertia(xx, yy, zz, xy, xz, yz);
+    // *** WARNING *** Adding these Beta Parameters results in failure in the simulation
+    // mRobot->getBodyNode(i)->setMass(m);
+    // mRobot->getBodyNode(i)->setLocalCOM(mCOM/m);
+    // mRobot->getBodyNode(i)->setMomentOfInertia(xx, yy, zz, xy, xz, yz);
 
     mRotorInertia(i-1, i-1) = beta(ind + 10)*mGR_array[i-1]*mGR_array[i-1];
     mViscousFriction(i-1, i-1) = beta(ind + 11);
     mCoulombFriction(i-1, i-1) = beta(ind + 12);
-    // mKmInv(i-1, i-1) = 1/mKm_array[i-1];
-    // mGRInv(i-1, i-1) = 1/mGR_array[i-1];
-    currLow(i-1) = mKm_array[i-1]*mGR_array[i-1]*currLow(i-1);
-    currHigh(i-1) = mKm_array[i-1]*mGR_array[i-1]*currHigh(i-1);
+  
+    torqueLow(i-1) = mKm_array[i-1]*mGR_array[i-1]*currLow(i-1);
+    torqueHigh(i-1) = mKm_array[i-1]*mGR_array[i-1]*currHigh(i-1);
   }
 
-    //Set beta Coulomb/Viscous Frictions
+  // *** NOTE *** Beta Frictions have been divided by 10 for simulation to work
+  //Set beta Coulomb/Viscous Frictions
   for (int i = 0; i < 7; i++){
 	  std::size_t index = 0;
 	  mRobot->getJoint(i)->setCoulombFriction(index,mCoulombFriction(i,i));
-	  mRobot->getJoint(i)->setDampingCoefficient(index,mViscousFriction(i,i));
+	  mRobot->getJoint(i)->setDampingCoefficient(index,mViscousFriction(i,i)/10);
   }
 
+ 
   // ============================= set mStep to zero
   mSteps = 0;
 }
@@ -177,6 +179,7 @@ Controller::Controller(dart::dynamics::SkeletonPtr _robot,
 Controller::~Controller(){}
 
 //==============================================================================
+
 struct OptParams{
   Eigen::Matrix<double, -1, 7> P;
   Eigen::VectorXd b;
@@ -250,6 +253,9 @@ void Controller::update(const Eigen::Vector3d& _targetPosition, const Eigen::Vec
   double currentTime = (get_time() - mStartTime)/100000.0;
   double dt = (mdtFixed? mdt : (currentTime - mPriorTime));
 
+
+  // ============================ Optimizer ============================
+
   // End-effector Position
   Eigen::Vector3d x = mEndEffector->getTransform().translation();
   Eigen::Vector3d dx = mEndEffector->getLinearVelocity();
@@ -261,7 +267,6 @@ void Controller::update(const Eigen::Vector3d& _targetPosition, const Eigen::Vec
   Eigen::Vector3d bPos = -(-dxref) ;
 
  // End-effector Orientation
-  /* 
   Eigen::Quaterniond quat(mEndEffector->getTransform().rotation());
   double quat_w = quat.w(); 
   Eigen::Vector3d quat_xyz(quat.x(), quat.y(), quat.z());
@@ -279,20 +284,13 @@ void Controller::update(const Eigen::Vector3d& _targetPosition, const Eigen::Vec
   math::AngularJacobian dJw = mEndEffector->getAngularJacobianDeriv();  // 3 x n
   Eigen::Matrix<double, 3, 7> POr = Jw;
   Eigen::Vector3d bOr = -(dJw*mdq - dwref);
-  */
+  
 
   // Speed Regulation
   /*
   Eigen::MatrixXd PReg = Eigen::Matrix<double, 7, 7>::Identity();
   Eigen::MatrixXd bReg = -mKvReg*mdq;
   */
-  
-
-
-  // ============================ Optimizer ============================
-
-  const vector<double> inequalityconstraintTol(7, 1e-3);
-  OptParams inequalityconstraintParams[2];
 
    // Optimizer stuff
   nlopt::opt opt(nlopt::LD_SLSQP, 7);
@@ -301,46 +299,47 @@ void Controller::update(const Eigen::Vector3d& _targetPosition, const Eigen::Vec
   double minf;
 
   // Perform optimization to find joint speeds
-  Eigen::MatrixXd P(PPos.rows()/* + POr.rows() + PReg.rows()*/, PPos.cols() );
-  P << mWPos*PPos/*,
-       mWOr*POr,
+  Eigen::MatrixXd P(PPos.rows() + POr.rows() /*+ PReg.rows()*/, PPos.cols() );
+  P << mWPos*PPos,
+       mWOr*POr/*,
        mWReg*PReg*/;
   
-  Eigen::VectorXd b(bPos.rows()/* + bOr.rows() + bReg.rows()*/, bPos.cols() );
-  b << mWPos*bPos/*,
-       mWOr*bOr,
+  Eigen::VectorXd b(bPos.rows() + bOr.rows() /*+ bReg.rows()*/, bPos.cols() );
+  b << mWPos*bPos,
+       mWOr*bOr/*,
        mWReg*bReg*/;
        
   optParams.P = P;
+
   optParams.b = b;
   opt.set_min_objective(optFunc, &optParams);
   opt.set_xtol_rel(1e-4);
   opt.set_maxtime(0.005);
   opt.optimize(dq_vec, minf);
   
-  Eigen::Matrix<double, 7, 1> dq_target(dq_vec.data()); 
-
 
 
   // =============================== PID ==============================
- 
+
+  Eigen::Matrix<double, 7, 1> dq_target(dq_vec.data()); 
   Eigen::Matrix<double, 7, 1> dq = mRobot->getVelocities();
+  
+  dqref << 10, 0, 0, 0, 0, 0, 0;
 
-  Eigen::Matrix<double, 7, 1> dq_zero;
-  dq_zero << 0, 0, 0, 0, 0, 0, 0;
+  Eigen::Matrix<double, 7, 1> dq_cmd = mKvJoint*(dq_target - dq);
 
-  Eigen::Matrix<double, 7, 1> dq_cmd = -mKvJoint*(dq- dq_zero);
+
 
   Eigen::Matrix<double, 7, 1> torque_cmd;
   for(int i = 0; i<7; i++){
-  	torque_cmd(i) = std::max(currLow(i), std::min(currHigh(i), dq_cmd(i))); 
+  	torque_cmd(i) = std::max(torqueLow(i), std::min(torqueHigh(i), dq_cmd(i))); 
   }
   
 
 
   // =========================== Set Forces ===========================
 
-  cout << "Torque Command:  " << torque_cmd(1) << "  " << torque_cmd(2) << "  " << torque_cmd(3) << "  " 
+  cout << "Torque Command:  " << torque_cmd(0) << " " << torque_cmd(1) << "  " << torque_cmd(2) << "  " << torque_cmd(3) << "  " 
   							  << torque_cmd(4) << "  " << torque_cmd(5) << "  " << torque_cmd(6) << endl;
   
   mRobot->setForces(torque_cmd);

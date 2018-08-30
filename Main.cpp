@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
   dart::dynamics::SkeletonPtr ground
       = dl.parseSkeleton("dart://sample/urdf/KR5/ground.urdf");
   dart::dynamics::SkeletonPtr robot
-      = dl.parseSkeleton("/home/munzir/dart_test/09-URDF/7DOFArm/singlearm.urdf");
+      = dl.parseSkeleton("/home/munzir/Documents/Software/09-URDF/7DOFArm/singlearm.urdf");
   
   // create and initialize the world
   dart::simulation::WorldPtr world(new dart::simulation::World);
@@ -60,7 +60,7 @@ int main(int argc, char* argv[])
   window.setWorld(world);
 
   glutInit(&argc, argv);
-  window.initWindow(640, 480, "Forward Simulation");
+  window.initWindow(1280, 720, "Forward Simulation");
   glutMainLoop();
 
   return 0;

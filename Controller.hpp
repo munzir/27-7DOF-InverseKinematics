@@ -56,12 +56,9 @@
 
 #include <nlopt.hpp>
 
-
-
 #define VELOCITY SOMATIC__MOTOR_PARAM__MOTOR_VELOCITY
 #define POSITION SOMATIC__MOTOR_PARAM__MOTOR_POSITION
 #define CURRENT SOMATIC__MOTOR_PARAM__MOTOR_CURRENT
-
 
 using namespace std;
 using namespace config4cpp;
@@ -79,9 +76,6 @@ public:
 
   /// \brief
   void update(const Eigen::Vector3d& _targetPosition, const Eigen::Vector3d& _targetRPY);
-
-  /// \brief initializes the structures related to the arm hardware
-  // void initArm (somatic_d_t& daemon_cx, somatic_motor_t& arm, const char* armName);
 
   /// \brief Get robot
   dart::dynamics::SkeletonPtr getRobot() const;
@@ -107,8 +101,6 @@ private:
   double mWPos, mWOr;
   Eigen::Matrix3d mKp, mKpOr;
 
-   Eigen::Matrix3d mRot0;
-
   /// \brief Derivative gain for the virtual spring forces at the end effector
   Eigen::Matrix3d mKv, mKvOr;
 
@@ -125,29 +117,17 @@ private:
   Eigen::Matrix<double, 7, 1> currHigh; 
   Eigen::Matrix<double, 7, 1> torqueLow;
   Eigen::Matrix<double, 7, 1> torqueHigh; 
-   Eigen::Matrix<double, 7, 1> dqref; 
+  Eigen::Matrix<double, 7, 1> dqref; 
 
   double mPriorTime;
   long mStartTime;
-  
-  Eigen::Matrix<double, 3, 1> mZeroCol;
-  Eigen::Matrix<double, 3, 7> mZero7Col;
 
-  Eigen::Matrix<double, 7, 1> mq, mdq;
-
-  Eigen::Matrix<double, 7, 1> mCurLim;
-
-  Eigen::Matrix<double, 4, 4> mBaseTf;
-
-  double mpsi;
+  Eigen::Matrix<double, 7, 1> mdq;
 
   int mSteps;
 
   bool mdtFixed;
   double mdt;
-
-  bool mCompensateFriction;
-  bool mPredictFriction;
 
   double mGainFactor;
 };

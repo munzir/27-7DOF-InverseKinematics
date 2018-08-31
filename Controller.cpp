@@ -47,8 +47,6 @@ Controller::Controller(dart::dynamics::SkeletonPtr _robot,
   mKp.setZero();
   mKv.setZero();
   mKpOr.setZero();
-  mZeroCol.setZero();
-  mZero7Col.setZero();
   mKvJoint.setZero();
   mWReg.setZero();
   currLow << -9.5, -9.5, -7.5, -7.5, -5.5, -5.5, -5.5;
@@ -67,11 +65,6 @@ Controller::Controller(dart::dynamics::SkeletonPtr _robot,
     
     isBetaConsistent = cfg->lookupBoolean(scope, "betaConsistent");
     cout << "betaConsistent: " << (isBetaConsistent?"true":"false") << endl;
-
-    currentLimitFactor = min(1.0, max(0.0, (double)cfg->lookupFloat(scope, "currentLimitFactor")));
-    cout << "currentLimitFactor: " << currentLimitFactor << endl;
-    mCurLim << 9.5, 9.5, 7.5, 7.5, 5.5, 5.5, 5.5;
-    mCurLim *= currentLimitFactor;
 
     mWPos = cfg->lookupFloat(scope, "wPos");
     cout << "wPos: " << mWPos << endl;
@@ -116,12 +109,6 @@ Controller::Controller(dart::dynamics::SkeletonPtr _robot,
 
     mdt = cfg->lookupFloat(scope, "dt");
     cout << "dt: " << mdt << endl;
-
-    mCompensateFriction = cfg->lookupBoolean(scope, "compensateFriction");
-    cout << "compensateFriction: " << (mCompensateFriction?"true":"false") << endl;
-
-    mPredictFriction = cfg->lookupBoolean(scope, "predictFriction");
-    cout << "predictFriction: " << (mPredictFriction?"true":"false") << endl;
 
   } catch(const ConfigurationException & ex) {
     cerr << ex.c_str() << endl;
@@ -279,14 +266,15 @@ void Controller::update(const Eigen::Vector3d& _targetPosition, const Eigen::Vec
   math::AngularJacobian Jw = mEndEffector->getAngularJacobian();       // 3 x n
   math::AngularJacobian dJw = mEndEffector->getAngularJacobianDeriv();  // 3 x n
   Eigen::Matrix<double, 3, 7> POr = Jw;
-  Eigen::Vector3d bOr = -(dJw*mdq - dwref);
+  Eigen::Vector3d bOr = -(-dwref);
   
-
   // Speed Regulation
   /*
+  mdq = mRobot->getVelocities();
   Eigen::MatrixXd PReg = Eigen::Matrix<double, 7, 7>::Identity();
   Eigen::MatrixXd bReg = -mKvReg*mdq;
   */
+  
 
    // Optimizer stuff
   nlopt::opt opt(nlopt::LD_SLSQP, 7);
@@ -306,18 +294,17 @@ void Controller::update(const Eigen::Vector3d& _targetPosition, const Eigen::Vec
        mWReg*bReg*/;
        
   optParams.P = P;
-
   optParams.b = b;
   opt.set_min_objective(optFunc, &optParams);
   opt.set_xtol_rel(1e-4);
   opt.set_maxtime(0.005);
   opt.optimize(dq_vec, minf);
   
-
-
   // =============================== PID ==============================
 
-  Eigen::Matrix<double, 7, 1> dq_target(dq_vec.data()); 
+  Eigen::Matrix<double, 7, 1> dq_target(dq_vec.data());
+  cout << "dq_target: " << dq_target[0] << " " << dq_target[1] << " " << dq_target[2] << " "
+      << dq_target[3] << " " << dq_target[4] << " " << dq_target[5] << " " << dq_target[6] << endl;
   Eigen::Matrix<double, 7, 1> dq = mRobot->getVelocities();
   Eigen::Matrix<double, 7, 1> opt_torque_cmd = -mKvJoint*(dq - dq_target);
   Eigen::Matrix<double, 7, 1> lmtd_torque_cmd;

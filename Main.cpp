@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
   dart::dynamics::SkeletonPtr ground
       = dl.parseSkeleton("dart://sample/urdf/KR5/ground.urdf");
   dart::dynamics::SkeletonPtr robot
-      = dl.parseSkeleton("/home/munzir/Documents/Software/09-URDF/7DOFArm/singlearm.urdf");
+      = dl.parseSkeleton("/home/areeb/dart/09-URDF/7DOFArm/singlearm.urdf");
   
   // create and initialize the world
   dart::simulation::WorldPtr world(new dart::simulation::World);

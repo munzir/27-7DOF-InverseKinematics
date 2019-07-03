@@ -3,7 +3,7 @@ project(operationalSpaceControl)
 
 set(CMAKE_CXX_FLAGS "-g -std=gnu++0x")
 
-find_package(DART 6.2.0 REQUIRED COMPONENTS utils-urdf gui CONFIG)
+find_package(DART 6.8.2 REQUIRED COMPONENTS utils-urdf gui CONFIG)
 
 #add_compile_options(-std=c++11)
 
@@ -12,4 +12,4 @@ include_directories(${DART_INCLUDE_DIRS})
 file(GLOB srcs "*.cpp" "*.hpp")
 add_executable(${PROJECT_NAME} ${srcs})
 
-target_link_libraries(${PROJECT_NAME} ${DART_LIBRARIES} nlopt protobuf-c amino ach somatic stdc++ blas lapack config4cpp)
+target_link_libraries(${PROJECT_NAME} ${DART_LIBRARIES} nlopt stdc++ blas lapack config4cpp)

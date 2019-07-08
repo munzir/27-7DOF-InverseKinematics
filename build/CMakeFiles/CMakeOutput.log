@@ -28,28 +28,28 @@ The CXX compiler identification is GNU, found in "/home/areeb/dart/27-7DOF-Inver
 Determining if the C compiler works passed with the following output:
 Change Dir: /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_82043/fast"
-/usr/bin/make -f CMakeFiles/cmTC_82043.dir/build.make CMakeFiles/cmTC_82043.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_3dd49/fast"
+/usr/bin/make -f CMakeFiles/cmTC_3dd49.dir/build.make CMakeFiles/cmTC_3dd49.dir/build
 make[1]: Entering directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_82043.dir/testCCompiler.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_82043.dir/testCCompiler.c.o   -c /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_82043
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_82043.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_82043.dir/testCCompiler.c.o  -o cmTC_82043 
+Building C object CMakeFiles/cmTC_3dd49.dir/testCCompiler.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_3dd49.dir/testCCompiler.c.o   -c /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_3dd49
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3dd49.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_3dd49.dir/testCCompiler.c.o  -o cmTC_3dd49 
 make[1]: Leaving directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_5e36b/fast"
-/usr/bin/make -f CMakeFiles/cmTC_5e36b.dir/build.make CMakeFiles/cmTC_5e36b.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_aa266/fast"
+/usr/bin/make -f CMakeFiles/cmTC_aa266.dir/build.make CMakeFiles/cmTC_aa266.dir/build
 make[1]: Entering directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_5e36b.dir/CMakeCCompilerABI.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_5e36b.dir/CMakeCCompilerABI.c.o   -c /usr/local/share/cmake-3.13/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_5e36b
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5e36b.dir/link.txt --verbose=1
-/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_5e36b.dir/CMakeCCompilerABI.c.o  -o cmTC_5e36b 
+Building C object CMakeFiles/cmTC_aa266.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_aa266.dir/CMakeCCompilerABI.c.o   -c /usr/local/share/cmake-3.13/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_aa266
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_aa266.dir/link.txt --verbose=1
+/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_aa266.dir/CMakeCCompilerABI.c.o  -o cmTC_aa266 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
@@ -59,8 +59,8 @@ Thread model: posix
 gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.11) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_5e36b' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/cccl13mQ.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_5e36b /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_5e36b.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_aa266' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccmGGYRm.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_aa266 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_aa266.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
 make[1]: Leaving directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp'
 
 
@@ -68,14 +68,14 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_5e36b/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_5e36b.dir/build.make CMakeFiles/cmTC_5e36b.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_aa266/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_aa266.dir/build.make CMakeFiles/cmTC_aa266.dir/build]
   ignore line: [make[1]: Entering directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_5e36b.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_5e36b.dir/CMakeCCompilerABI.c.o   -c /usr/local/share/cmake-3.13/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_5e36b]
-  ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5e36b.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_5e36b.dir/CMakeCCompilerABI.c.o  -o cmTC_5e36b ]
+  ignore line: [Building C object CMakeFiles/cmTC_aa266.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_aa266.dir/CMakeCCompilerABI.c.o   -c /usr/local/share/cmake-3.13/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_aa266]
+  ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_aa266.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_aa266.dir/CMakeCCompilerABI.c.o  -o cmTC_aa266 ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/cc]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper]
@@ -85,13 +85,13 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.11) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_5e36b' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/cccl13mQ.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_5e36b /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_5e36b.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_aa266' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccmGGYRm.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_aa266 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_aa266.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/cccl13mQ.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccmGGYRm.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -109,7 +109,7 @@ Parsed C implicit link information from above output:
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_5e36b] ==> ignore
+    arg [cmTC_aa266] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o] ==> ignore
@@ -121,7 +121,7 @@ Parsed C implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/5/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/5/../../..]
-    arg [CMakeFiles/cmTC_5e36b.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_aa266.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--as-needed] ==> ignore
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -151,14 +151,14 @@ Parsed C implicit link information from above output:
 Detecting C [-std=c11] compiler features compiled with the following output:
 Change Dir: /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_6fd1f/fast"
-/usr/bin/make -f CMakeFiles/cmTC_6fd1f.dir/build.make CMakeFiles/cmTC_6fd1f.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_b6a0f/fast"
+/usr/bin/make -f CMakeFiles/cmTC_b6a0f.dir/build.make CMakeFiles/cmTC_b6a0f.dir/build
 make[1]: Entering directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_6fd1f.dir/feature_tests.c.o
-/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_6fd1f.dir/feature_tests.c.o   -c /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_6fd1f
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6fd1f.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_6fd1f.dir/feature_tests.c.o  -o cmTC_6fd1f 
+Building C object CMakeFiles/cmTC_b6a0f.dir/feature_tests.c.o
+/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_b6a0f.dir/feature_tests.c.o   -c /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_b6a0f
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b6a0f.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_b6a0f.dir/feature_tests.c.o  -o cmTC_b6a0f 
 make[1]: Leaving directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp'
 
 
@@ -171,14 +171,14 @@ make[1]: Leaving directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMa
 Detecting C [-std=c99] compiler features compiled with the following output:
 Change Dir: /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_d1b8e/fast"
-/usr/bin/make -f CMakeFiles/cmTC_d1b8e.dir/build.make CMakeFiles/cmTC_d1b8e.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_c38aa/fast"
+/usr/bin/make -f CMakeFiles/cmTC_c38aa.dir/build.make CMakeFiles/cmTC_c38aa.dir/build
 make[1]: Entering directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_d1b8e.dir/feature_tests.c.o
-/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_d1b8e.dir/feature_tests.c.o   -c /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_d1b8e
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d1b8e.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_d1b8e.dir/feature_tests.c.o  -o cmTC_d1b8e 
+Building C object CMakeFiles/cmTC_c38aa.dir/feature_tests.c.o
+/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_c38aa.dir/feature_tests.c.o   -c /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_c38aa
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c38aa.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_c38aa.dir/feature_tests.c.o  -o cmTC_c38aa 
 make[1]: Leaving directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp'
 
 
@@ -191,14 +191,14 @@ make[1]: Leaving directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMa
 Detecting C [-std=c90] compiler features compiled with the following output:
 Change Dir: /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_b85f2/fast"
-/usr/bin/make -f CMakeFiles/cmTC_b85f2.dir/build.make CMakeFiles/cmTC_b85f2.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_9d863/fast"
+/usr/bin/make -f CMakeFiles/cmTC_9d863.dir/build.make CMakeFiles/cmTC_9d863.dir/build
 make[1]: Entering directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_b85f2.dir/feature_tests.c.o
-/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_b85f2.dir/feature_tests.c.o   -c /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_b85f2
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b85f2.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_b85f2.dir/feature_tests.c.o  -o cmTC_b85f2 
+Building C object CMakeFiles/cmTC_9d863.dir/feature_tests.c.o
+/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_9d863.dir/feature_tests.c.o   -c /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_9d863
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9d863.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_9d863.dir/feature_tests.c.o  -o cmTC_9d863 
 make[1]: Leaving directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp'
 
 
@@ -209,28 +209,28 @@ make[1]: Leaving directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMa
 Determining if the CXX compiler works passed with the following output:
 Change Dir: /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_5c91f/fast"
-/usr/bin/make -f CMakeFiles/cmTC_5c91f.dir/build.make CMakeFiles/cmTC_5c91f.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_ef961/fast"
+/usr/bin/make -f CMakeFiles/cmTC_ef961.dir/build.make CMakeFiles/cmTC_ef961.dir/build
 make[1]: Entering directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_5c91f.dir/testCXXCompiler.cxx.o
-/usr/bin/c++     -o CMakeFiles/cmTC_5c91f.dir/testCXXCompiler.cxx.o -c /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_5c91f
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5c91f.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_5c91f.dir/testCXXCompiler.cxx.o  -o cmTC_5c91f 
+Building CXX object CMakeFiles/cmTC_ef961.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTC_ef961.dir/testCXXCompiler.cxx.o -c /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_ef961
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ef961.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_ef961.dir/testCXXCompiler.cxx.o  -o cmTC_ef961 
 make[1]: Leaving directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_65fc9/fast"
-/usr/bin/make -f CMakeFiles/cmTC_65fc9.dir/build.make CMakeFiles/cmTC_65fc9.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_8f9ef/fast"
+/usr/bin/make -f CMakeFiles/cmTC_8f9ef.dir/build.make CMakeFiles/cmTC_8f9ef.dir/build
 make[1]: Entering directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_65fc9.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/c++     -o CMakeFiles/cmTC_65fc9.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake-3.13/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_65fc9
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_65fc9.dir/link.txt --verbose=1
-/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_65fc9.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_65fc9 
+Building CXX object CMakeFiles/cmTC_8f9ef.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTC_8f9ef.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake-3.13/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_8f9ef
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8f9ef.dir/link.txt --verbose=1
+/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_8f9ef.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_8f9ef 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
@@ -240,8 +240,8 @@ Thread model: posix
 gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.11) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_65fc9' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccq34iGl.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_65fc9 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_65fc9.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_8f9ef' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccbXkoxS.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_8f9ef /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_8f9ef.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
 make[1]: Leaving directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp'
 
 
@@ -249,14 +249,14 @@ Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_65fc9/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_65fc9.dir/build.make CMakeFiles/cmTC_65fc9.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_8f9ef/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_8f9ef.dir/build.make CMakeFiles/cmTC_8f9ef.dir/build]
   ignore line: [make[1]: Entering directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_65fc9.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_65fc9.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake-3.13/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_65fc9]
-  ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_65fc9.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_65fc9.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_65fc9 ]
+  ignore line: [Building CXX object CMakeFiles/cmTC_8f9ef.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_8f9ef.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake-3.13/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_8f9ef]
+  ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8f9ef.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_8f9ef.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_8f9ef ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/c++]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper]
@@ -266,13 +266,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.11) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_65fc9' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccq34iGl.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_65fc9 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_65fc9.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_8f9ef' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccbXkoxS.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_8f9ef /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_8f9ef.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccq34iGl.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccbXkoxS.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -290,7 +290,7 @@ Parsed CXX implicit link information from above output:
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_65fc9] ==> ignore
+    arg [cmTC_8f9ef] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o] ==> ignore
@@ -302,7 +302,7 @@ Parsed CXX implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/5/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/5/../../..]
-    arg [CMakeFiles/cmTC_65fc9.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_8f9ef.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -330,14 +330,14 @@ Parsed CXX implicit link information from above output:
 Detecting CXX [-std=c++1z] compiler features compiled with the following output:
 Change Dir: /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_b0515/fast"
-/usr/bin/make -f CMakeFiles/cmTC_b0515.dir/build.make CMakeFiles/cmTC_b0515.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_c66c4/fast"
+/usr/bin/make -f CMakeFiles/cmTC_c66c4.dir/build.make CMakeFiles/cmTC_c66c4.dir/build
 make[1]: Entering directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_b0515.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_b0515.dir/feature_tests.cxx.o -c /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_b0515
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b0515.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_b0515.dir/feature_tests.cxx.o  -o cmTC_b0515 
+Building CXX object CMakeFiles/cmTC_c66c4.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_c66c4.dir/feature_tests.cxx.o -c /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_c66c4
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c66c4.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_c66c4.dir/feature_tests.cxx.o  -o cmTC_c66c4 
 make[1]: Leaving directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp'
 
 
@@ -403,14 +403,14 @@ make[1]: Leaving directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMa
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
 Change Dir: /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_0d32b/fast"
-/usr/bin/make -f CMakeFiles/cmTC_0d32b.dir/build.make CMakeFiles/cmTC_0d32b.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_29cd5/fast"
+/usr/bin/make -f CMakeFiles/cmTC_29cd5.dir/build.make CMakeFiles/cmTC_29cd5.dir/build
 make[1]: Entering directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_0d32b.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_0d32b.dir/feature_tests.cxx.o -c /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_0d32b
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0d32b.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_0d32b.dir/feature_tests.cxx.o  -o cmTC_0d32b 
+Building CXX object CMakeFiles/cmTC_29cd5.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_29cd5.dir/feature_tests.cxx.o -c /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_29cd5
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_29cd5.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_29cd5.dir/feature_tests.cxx.o  -o cmTC_29cd5 
 make[1]: Leaving directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp'
 
 
@@ -476,14 +476,14 @@ make[1]: Leaving directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMa
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
 Change Dir: /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_7acdc/fast"
-/usr/bin/make -f CMakeFiles/cmTC_7acdc.dir/build.make CMakeFiles/cmTC_7acdc.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_92524/fast"
+/usr/bin/make -f CMakeFiles/cmTC_92524.dir/build.make CMakeFiles/cmTC_92524.dir/build
 make[1]: Entering directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_7acdc.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_7acdc.dir/feature_tests.cxx.o -c /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_7acdc
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7acdc.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_7acdc.dir/feature_tests.cxx.o  -o cmTC_7acdc 
+Building CXX object CMakeFiles/cmTC_92524.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_92524.dir/feature_tests.cxx.o -c /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_92524
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_92524.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_92524.dir/feature_tests.cxx.o  -o cmTC_92524 
 make[1]: Leaving directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp'
 
 
@@ -549,14 +549,14 @@ make[1]: Leaving directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMa
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
 Change Dir: /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_83749/fast"
-/usr/bin/make -f CMakeFiles/cmTC_83749.dir/build.make CMakeFiles/cmTC_83749.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_b5a55/fast"
+/usr/bin/make -f CMakeFiles/cmTC_b5a55.dir/build.make CMakeFiles/cmTC_b5a55.dir/build
 make[1]: Entering directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_83749.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_83749.dir/feature_tests.cxx.o -c /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_83749
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_83749.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_83749.dir/feature_tests.cxx.o  -o cmTC_83749 
+Building CXX object CMakeFiles/cmTC_b5a55.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_b5a55.dir/feature_tests.cxx.o -c /home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_b5a55
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b5a55.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_b5a55.dir/feature_tests.cxx.o  -o cmTC_b5a55 
 make[1]: Leaving directory '/home/areeb/dart/27-7DOF-InverseKinematics/build/CMakeFiles/CMakeTmp'
 
 

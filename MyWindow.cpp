@@ -31,7 +31,10 @@
 
 #include "MyWindow.hpp"
 
-#include <iostream>
+#include <fstream>
+#include <string>
+
+string tCS;
 
 //==============================================================================
 MyWindow::MyWindow(Controller* _controller)
@@ -80,12 +83,8 @@ void MyWindow::timeStepping()
     time += dt;
   }
 
-  //cout<<"testing testing testing"<<endl;
   // Update the controller and apply control force to the robot
   mController->update(mTargetPosition, mTargetRPY);
-  //cout<<"isolate error"<<endl;
-  cout<<endl;
-
   // Step forward the simulation
   mWorld->step();
 }
@@ -201,6 +200,7 @@ void MyWindow::keyboard(unsigned char _key, int _x, int _y)
         mCircleTask = true;
       }
       break;
+
     case 'q':
       mTargetPosition[0] -= incremental;
       break;

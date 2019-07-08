@@ -245,9 +245,8 @@ void Controller::update(const Eigen::Vector3d& _targetPosition, const Eigen::Vec
   Eigen::Vector3d dx = mEndEffector->getLinearVelocity();
   Eigen::Vector3d dxref = -mKp*(x - _targetPosition);
   math::LinearJacobian Jv = mEndEffector->getLinearJacobian();       // 3 x n
-  math::LinearJacobian dJv = mEndEffector->getLinearJacobianDeriv();  // 3 x n
   Eigen::Matrix<double, 3, 7> PPos = Jv;
-  Eigen::Vector3d bPos = -(-dxref) ;
+  Eigen::Vector3d bPos = -(-dxref);
 
  // End-effector Orientation
   Eigen::Quaterniond quat(mEndEffector->getTransform().rotation());
@@ -269,11 +268,11 @@ void Controller::update(const Eigen::Vector3d& _targetPosition, const Eigen::Vec
   Eigen::Vector3d bOr = -(-dwref);
   
   // Speed Regulation
-  /*
-  mdq = mRobot->getVelocities();
+  
+  // mdq = mRobot->getVelocities();
   Eigen::MatrixXd PReg = Eigen::Matrix<double, 7, 7>::Identity();
   Eigen::MatrixXd bReg = -mKvReg*mdq;
-  */
+  
   
 
    // Optimizer stuff
@@ -283,15 +282,15 @@ void Controller::update(const Eigen::Vector3d& _targetPosition, const Eigen::Vec
   double minf;
 
   // Perform optimization to find joint speeds
-  Eigen::MatrixXd P(PPos.rows() + POr.rows() /*+ PReg.rows()*/, PPos.cols() );
+  Eigen::MatrixXd P(PPos.rows() + POr.rows() + PReg.rows(), PPos.cols() );
   P << mWPos*PPos,
-       mWOr*POr/*,
-       mWReg*PReg*/;
+       mWOr*POr,
+       mWReg*PReg;
   
-  Eigen::VectorXd b(bPos.rows() + bOr.rows() /*+ bReg.rows()*/, bPos.cols() );
+  Eigen::VectorXd b(bPos.rows() + bOr.rows() + bReg.rows(), bPos.cols() );
   b << mWPos*bPos,
-       mWOr*bOr/*,
-       mWReg*bReg*/;
+       mWOr*bOr,
+       mWReg*bReg;
        
   optParams.P = P;
   optParams.b = b;
@@ -303,8 +302,8 @@ void Controller::update(const Eigen::Vector3d& _targetPosition, const Eigen::Vec
   // =============================== PID ==============================
 
   Eigen::Matrix<double, 7, 1> dq_target(dq_vec.data());
-  cout << "dq_target: " << dq_target[0] << " " << dq_target[1] << " " << dq_target[2] << " "
-      << dq_target[3] << " " << dq_target[4] << " " << dq_target[5] << " " << dq_target[6] << endl;
+  // cout << "dq_target: " << dq_target[0] << " " << dq_target[1] << " " << dq_target[2] << " "
+  //     << dq_target[3] << " " << dq_target[4] << " " << dq_target[5] << " " << dq_target[6] << endl;
   Eigen::Matrix<double, 7, 1> dq = mRobot->getVelocities();
   Eigen::Matrix<double, 7, 1> opt_torque_cmd = -mKvJoint*(dq - dq_target);
   Eigen::Matrix<double, 7, 1> lmtd_torque_cmd;
@@ -315,8 +314,8 @@ void Controller::update(const Eigen::Vector3d& _targetPosition, const Eigen::Vec
   
   // =========================== Set Forces ===========================
 
-  cout << "Torque Command:  " << lmtd_torque_cmd(0) << " " << lmtd_torque_cmd(1) << "  " << lmtd_torque_cmd(2) << "  " << lmtd_torque_cmd(3) << "  " 
-  							  << lmtd_torque_cmd(4) << "  " << lmtd_torque_cmd(5) << "  " << lmtd_torque_cmd(6) << endl;
+  // cout << "Torque Command:  " << lmtd_torque_cmd(0) << " " << lmtd_torque_cmd(1) << "  " << lmtd_torque_cmd(2) << "  " << lmtd_torque_cmd(3) << "  " 
+  // 							  << lmtd_torque_cmd(4) << "  " << lmtd_torque_cmd(5) << "  " << lmtd_torque_cmd(6) << endl;
   
   mRobot->setForces(lmtd_torque_cmd);
 

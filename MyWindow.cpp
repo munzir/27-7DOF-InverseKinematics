@@ -36,6 +36,12 @@
 
 string tCS;
 
+ofstream targetEEPos;
+ofstream jointPos;
+ofstream jointVel;
+
+bool recordData = true;
+
 //==============================================================================
 MyWindow::MyWindow(Controller* _controller)
   : SimWindow(),
@@ -56,12 +62,23 @@ MyWindow::MyWindow(Controller* _controller)
   mTargetRPY.setZero();
   mTargetRPY = dart::math::matrixToEulerXYZ(mController->getEndEffector()->getTransform().rotation());
   std::cout << "RPY: " << mTargetRPY(0) << ", " << mTargetRPY(1) << ", " << mTargetRPY(2) << std::endl;
+
+  if(recordData){
+    targetEEPos.open("../targetEEPos.txt");
+    jointPos.open("../jointPos.txt");
+    jointVel.open("../jointVel.txt");
+  }
 }
 
 //==============================================================================
 MyWindow::~MyWindow()
 {
    delete mController;
+   if(recordData){
+     targetEEPos.close();
+     jointPos.close();
+     jointVel.close();
+   }
    std::cout << "closing window ..." << std::endl;
 }
 
@@ -86,6 +103,32 @@ void MyWindow::timeStepping()
   // Update the controller and apply control force to the robot
   mController->update(mTargetPosition, mTargetRPY);
   // Step forward the simulation
+  
+  if(recordData){
+    jointPos << mController->getRobot()->getJoint(1)->getPosition(0) << ","
+      << mController->getRobot()->getJoint(2)->getPosition(0) << ","
+      << mController->getRobot()->getJoint(3)->getPosition(0) << ","
+      << mController->getRobot()->getJoint(4)->getPosition(0) << ","
+      << mController->getRobot()->getJoint(5)->getPosition(0) << ","
+      << mController->getRobot()->getJoint(6)->getPosition(0) << ","
+      << mController->getRobot()->getJoint(7)->getPosition(0) << endl;
+
+    jointVel << mController->getRobot()->getJoint(1)->getVelocity(0) << ","
+      << mController->getRobot()->getJoint(2)->getVelocity(0) << ","
+      << mController->getRobot()->getJoint(3)->getVelocity(0) << ","
+      << mController->getRobot()->getJoint(4)->getVelocity(0) << ","
+      << mController->getRobot()->getJoint(5)->getVelocity(0) << ","
+      << mController->getRobot()->getJoint(6)->getVelocity(0) << ","
+      << mController->getRobot()->getJoint(7)->getVelocity(0) << endl;
+
+    // cout << "TargetPos: " << mTargetPosition[0] << "," << mTargetPosition[1] << endl;
+    // cout << "EEPos: " << mController->getEndEffector()->getTransform().translation().x() << endl;
+    targetEEPos << mTargetPosition[0] << "," << mTargetPosition[1] << "," << mTargetPosition[2] << ","
+      << mController->getEndEffector()->getTransform().translation().x() << ","
+      << mController->getEndEffector()->getTransform().translation().y() << ","
+      << mController->getEndEffector()->getTransform().translation().z() << endl;
+  }
+
   mWorld->step();
 }
 
